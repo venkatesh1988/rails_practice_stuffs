@@ -1,0 +1,43 @@
+<%= nested_form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+    <h3>Address Nested Form:</h3>
+    
+    <%= f.fields_for :address do |ff|%>
+    <div class="field">
+      <%= ff.label :primary_address %><br>
+      <%= ff.text_field :primary_address %><br>
+      <%= ff.label :secondary_address %><br>
+      <%= ff.text_field :secondary_address %><br>
+    </div>
+    
+    <p><%= ff.link_to_remove "Remove Address Form" %></p>
+    
+   <% end %>
+    
+    <p><%= f.link_to_add "Add Address Form", :address %></p><br>
+    
+  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

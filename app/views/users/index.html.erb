@@ -1,0 +1,27 @@
+<table class="table table-hover table-striped table-bordered">
+<thead style="background-color: #efefef">
+  <tr>
+   
+    <th>User Name</th>
+    <th>Email Id</th>
+    <th>Address1</th>
+    <th>Address2</th>
+  </tr> 
+</thead>
+
+<tbody>
+  <% @users.each do |user| %>
+    
+    <tr>     
+     <td><%= user.name %></td>
+     <td><%= user.email %></td>
+      <% user.address.each do |ua| %>
+        <td><%= ua.primary_address %></td>
+        <td><%= ua.secondary_address %></td>
+      <% end %> 
+  
+    </tr> 
+  <% end %>
+</tbody>
+</table>
+ 
